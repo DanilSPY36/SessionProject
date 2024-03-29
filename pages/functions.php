@@ -31,12 +31,11 @@ function register($login, $email, $pass){
             echo "<h3 class='text-danger text-center'> Данное имя занято </h3>";
             return false;
         }
-        // формируем строку с данными пользователя для записи в файл в формате  "username":"usermale@ibox.ru:":"password123"
-        $line = $login. ":". $email.":".md5($pass)."\n\r";
-        fputs($file, $line);
-        fclose($file);
-        return true;
     } 
+    // формируем строку с данными пользователя для записи в файл в формате  "username":"usermale@ibox.ru:":"password123"
+    $line = $login. ":". $email.":".md5($pass)."\n\r";
+    fputs($file, $line);
+    fclose($file);
+    return true;
 }
 ?>
-

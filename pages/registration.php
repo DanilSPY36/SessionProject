@@ -30,7 +30,11 @@ if(!isset($_POST["regbtn"])) {
 
     <?php
     }
-    else {
-       
+    else 
+    {
+        if(register($_POST["login"], $_POST["email"], $_POST["password1"])) 
+        {
+            echo "<h3 class='text-success text-center'>Новый пользователь добавлен!</h3>";
+        }
     }
     ?>
