@@ -15,7 +15,10 @@
         <div class="row">
             <nav class="nav col-sm-12 col-md-12 col-lg-12 bg-secondary py-3">
                 <div class="container d-flex flex-row">
-                    <? include_once("../pages/menu.php"); ?>
+                    <? 
+                        include_once("../pages/menu.php");
+                        include_once("../pages/functions.php");
+                    ?>
                 </div>
             </nav>
         </div>
@@ -37,6 +40,9 @@
                                 break;
                             case 4:
                                 include_once("../pages/registration.php");
+                                break;
+                            case 5:
+                                include_once("../pages/login.php");
                                 break;
                             default:
                                 include_once("../pages/not_found.php");

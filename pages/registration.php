@@ -26,6 +26,8 @@ if(!isset($_POST["regbtn"])) {
         <button type="submit" class="btn btn-outline-primary my-2" name="regbtn">Зарегистрироваться</button>
     </form>
      
+    <a href="index.php?page=5" class="nav-link text-center my-3">Есть учетная запись? Войти</a>
+
     <?php
     }
     else {
