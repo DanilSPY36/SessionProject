@@ -38,4 +38,31 @@ function register($login, $email, $pass){
     fclose($file);
     return true;
 }
+
+function login($loginOrEmail, $pass){
+    $loginOrEmail= trim(htmlspecialchars($loginOrEmail));
+    $pass= trim(htmlspecialchars($pass));
+    $flag = false;
+    if($loginOrEmail == "" || $pass == ""){
+        echo "<h3 class='text-danger text-center'> Какое-то поле не заполнено!</h3>";
+        return false;
+    }
+    global $users;
+    $file = fopen($users, 'r');
+    while($line=fgets($file, 128))
+    {
+        list($savedLogin, $savedEmail, $hash) = explode(':', $line);
+        echo "".$savedLogin. "==" .$loginOrEmail. " || " .$savedEmail. "==" .$loginOrEmail. " || " .md5($pass). "==" .$hash."</br>";
+        
+        // Проверяем совпадение логина и пароля
+        if((trim($savedLogin) == trim($loginOrEmail) || trim($savedEmail) == trim($loginOrEmail)) && password_verify(trim($pass), trim($hash))) 
+        {
+            echo 'Вход выполнен успешно!';
+            $flag = true;
+            break;
+        }
+    }
+    fclose($file);
+    return $flag;
+}
 ?>
