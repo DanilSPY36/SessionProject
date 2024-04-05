@@ -1,3 +1,8 @@
+<?
+session_start();
+include_once("../pages/functions.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +22,6 @@
                 <div class="container d-flex flex-row">
                     <? 
                         include_once("../pages/menu.php");
-                        include_once("../pages/functions.php");
                     ?>
                 </div>
             </nav>
@@ -36,13 +40,34 @@
                                 include_once("../pages/upload.php");
                                 break;
                             case 3:
-                                include_once("../pages/gallery.php");
+                                if(!isset($_SESSION["user"]))
+                                {
+                                    include_once("../pages/gallery.php");
+                                }
+                                else
+                                {
+                                    include_once("../pages/not_found.php");
+                                }
                                 break;
                             case 4:
-                                include_once("../pages/registration.php");
+                                if(!isset($_SESSION["user"]))
+                                {
+                                    include_once("../pages/registration.php");
+                                }
+                                else
+                                {
+                                    include_once("../pages/not_found.php");
+                                }
                                 break;
                             case 5:
-                                include_once("../pages/login.php");
+                                if(!isset($_SESSION["user"]))
+                                {
+                                    include_once("../pages/login.php");
+                                }
+                                else
+                                {
+                                    include_once("../pages/not_found.php");
+                                }
                                 break;
                             default:
                                 include_once("../pages/not_found.php");

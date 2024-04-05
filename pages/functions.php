@@ -1,6 +1,5 @@
 <?php
 $users = "../pages/users.txt";
-$loginuser = false;
 
 function register($login, $email, $pass){
     $login= trim(htmlspecialchars($login));
@@ -39,10 +38,6 @@ function register($login, $email, $pass){
     return true;
 }
 
-function logOut(){
-    global $loginuser;
-    $loginuser = false;
-}
 
 function login($loginOrEmail, $pass){
     $loginOrEmail= trim(htmlspecialchars($loginOrEmail));
@@ -57,29 +52,17 @@ function login($loginOrEmail, $pass){
     while($line=fgets($file, 128))
     {
         list($savedLogin, $savedEmail, $hash) = explode(':', $line);
-        echo "".$savedLogin. "==" .$loginOrEmail. " || " .$savedEmail. "==" .$loginOrEmail. " || " .md5($pass). "==" .$hash."</br>";
+        //echo "".$savedLogin. "==" .$loginOrEmail. " || " .$savedEmail. "==" .$loginOrEmail. " || " .md5($pass). "==" .$hash."</br>";
         // Проверяем совпадение логина и пароля md5(trim($pass)
         if((trim($savedLogin) == trim($loginOrEmail) || trim($savedEmail) == trim($loginOrEmail)) && md5(trim($pass) == trim($hash))) 
         {
             echo 'Вход выполнен успешно!';
             fclose($file);
-            global $loginuser;
-            $loginuser = true;
+            $_SESSION["user"] = $savedLogin;
             return true;
         }
     }
     fclose($file);
     return false;
-}
-function chekLogin(){
-    global $loginuser;
-    if($loginuser)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
 }
 ?>

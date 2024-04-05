@@ -24,6 +24,7 @@ if(!isset($_POST["logbtn"])) {
         if(login($_POST["login"], $_POST["password1"])) 
         {
             echo "<h3 class='text-success text-center'>Login success</h3>";
+            echo "<script>window.location.href='index.php?page=1'</script>"; // перезагрузка страницы при заходе на аккаунт пользователем.
         }
     }
     ?>
